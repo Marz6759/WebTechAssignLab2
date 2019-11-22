@@ -1,0 +1,13 @@
+table, th, td{
+  border: 5px solid rgba(0, 111, 1, 0.24);
+  border-collapse: collapse;
+}
+th, td{
+  background-color: rgba(179, 238, 183, 0.62);
+  padding: 40px;
+  text-align: left;
+}
+
+button{
+  padding: 50px;
+}

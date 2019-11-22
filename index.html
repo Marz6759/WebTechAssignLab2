@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styling.css">
+    <script src="external.js"></script>
+  </head>
+  <body>
+    <h1 style="margin-left:40%">Snakes and Ladders</h1>
+    <div role="group">
+      <h2>Game log</h2>
+      <div id="log" style="height: 600px; width: 300px; float:left; overflow:auto;">
+      </div>
+      <div class="" style="float:right;margin-right:10%;margin-top:15%">
+        <button type="button" onclick="move();" id="roll"name="button">Roll Dice!</button>
+        <button type="button" name="button" onclick="window.location.href='index.html'">Reset!</button>
+      </div>
+      <table id="table" style="margin-left: 33%;width:10%; height:10%;">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="background-color: rgba(255, 0, 0, 0.41)"></td>
+          <td style="background-color: rgba(5, 255, 0, 0.45)"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="background-color: rgba(255, 0, 0, 0.41)"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="background-color: rgba(0, 148, 255, 0.48)"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript">
+      generateMap();
+    </script>
+
+  </body>
+</html>
