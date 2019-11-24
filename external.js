@@ -103,14 +103,14 @@ function move() {
     generateMap();
     return;
   }
+  log.innerHTML += "<p>Player "+Number(current+1)+" has rolled: "+temp+"</p>";
+  log.innerHTML += currentLog;
   if (current == 0){
     current = 1;
   }
   else {
     current = 0;
   }
-  log.innerHTML += "<p>Player "+Number(current+1)+" has rolled: "+temp+"</p>";
-  log.innerHTML += currentLog;
   console.log(players[current].coordinates[0], players[current].coordinates[1]);
   generateMap();
 
