@@ -1,6 +1,6 @@
 var players = [
-  {coordinates:[0,0]},
-  {coordinates:[0,0]}
+  {coordinates:[0,0,0]},
+  {coordinates:[0,0,0]}
 ];
 
 var current = 0;
@@ -63,34 +63,42 @@ function move() {
   var temp = random;
   var currentLog = log.innerHTML;
   log.innerHTML = "";
-  while (random){
-    players[current].coordinates[0] ++;
-    if (players[current].coordinates[0] == 4){
+  players[current].coordinates[2] += random;
+  if (players[current].coordinates[0]+random>4){
+    while (players[current].coordinates[0]+random > 4){
+      random-= 4;
       players[current].coordinates[1] ++;
-      players[current].coordinates[0] = 0;
     }
-    if (players[current].coordinates[1]>4){
-      log.innerHTML = "<p>Player "+Number(current+1)+" has won the game!</p>";
-      log.innerHTML += "<p>Player "+Number(current+1)+" has rolled: "+temp+"</p>";
-      log.innerHTML += currentLog;
-      document.getElementById("roll").disabled = true;
-      generateMap();
-      return;
-    }
-    random --;
+    players[current].coordinates[0] +=  random-1;
+  }
+  else {
+    players[current].coordinates[0] +=  random;
+  }
+  if (players[current].coordinates[1]>4){
+    log.innerHTML = "<p>Player "+Number(current+1)+" has won the game!</p>";
+    log.innerHTML += "<p>Player "+Number(current+1)+" has rolled: "+temp+". Moving to position "+players[current].coordinates[2]+"!</p>";
+    log.innerHTML += currentLog;
+    document.getElementById("roll").disabled = true;
+    generateMap();
+    return;
   }
   if (players[current].coordinates[0]==3 && players[current].coordinates[1]==4){
     log.innerHTML = "<p>Player "+Number(current+1)+" has landed on a snake! Moving to position 16!</p>";
+    players[current].coordinates[2]-= 7;
     players[current].coordinates[0] = 1;
     players[current].coordinates[1] = 3;
   }
   else if (players[current].coordinates[0]==0 && players[current].coordinates[1]==3){
     log.innerHTML = "<p>Player "+Number(current+1)+" has landed on a snake! Moving to position 5!</p>";
+    players[current].coordinates[2]-=10;
     players[current].coordinates[0] = 0;
     players[current].coordinates[1] = 1;
   }
   else if (players[current].coordinates[0]==3 && players[current].coordinates[1]==1){
-    log.innerHTML = "<p>Player "+Number(current+1)+" has landed on a ladder! Moving to position 15!</p>";
+    var temp = currentLog;
+    players[current].coordinates[2]+=7;
+    currentLog= "<p>Player "+Number(current+1)+" has landed on a ladder! Moving to position 15!</p>";
+    currentLog+=temp;
     players[current].coordinates[0] = 0;
     players[current].coordinates[1] = 3;
   }
@@ -103,14 +111,17 @@ function move() {
     generateMap();
     return;
   }
-  log.innerHTML += "<p>Player "+Number(current+1)+" has rolled: "+temp+"</p>";
-  log.innerHTML += currentLog;
+  var newlog = "<p>Player "+Number(current+1)+" has rolled: "+temp+". Moving to position "+players[current].coordinates[2]+"!</p>";
+  console.log("hello");
+  newlog += currentLog;
   if (current == 0){
     current = 1;
   }
   else {
     current = 0;
   }
+  log.innerHTML = "Player " + Number(current+1) + "'s turn";
+  log.innerHTML += newlog;
   console.log(players[current].coordinates[0], players[current].coordinates[1]);
   generateMap();
 
